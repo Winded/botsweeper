@@ -32,23 +32,25 @@ namespace Protocol
 		MineSweepResult,
 	}
 
-	public class Message
-	{
-		public string from_id { get; set; }
-		public string to_id { get; set; }
-		public Dictionary<object, object> message { get; set; }
-	}
+	//public class Message
+	//{
+	//	public string from_id { get; set; }
+	//	public string to_id { get; set; }
+	//	public Dictionary<object, object> message { get; set; }
+ //   }
 
-	public class BaseMessage
-	{
-		public BaseMessage()
-		{
-			type = BaseMessageType.EndpointMessage;
-		}
+ //   public class BaseMessage
+ //   {
+ //       public BaseMessage()
+ //       {
+ //           type = BaseMessageType.EndpointMessage;
+ //       }
 
-		public BaseMessageType type { get; set; }
+ //       public BaseMessageType type { get; set; }
 
-		public string name { get; set; }
-		public Message message { get; set; }
-	}
+ //       public string name { get; set; }
+ //       public Message message { get; set; }
+ //   }
+
+    public class Message : Dictionary<object, object> { }
 }

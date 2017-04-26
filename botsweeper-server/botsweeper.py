@@ -64,12 +64,20 @@ class MasterServer(object):
             print("Client %s:%i connected" % (c.address, c.port))
             self.clients.append(c)
 
+        # Windows select error fix
+        if len(self.clients) <= 0:
+            return
+
         rs, ws, xs = select(map(lambda c: c.socket, self.clients), [], [], 0)
         for c in self.clients:
             if c.socket not in rs:
                 continue
 
-            data = c.socket.recv(4096)
+            data = ""
+            try:
+                data = c.socket.recv(4096)
+            except socket.error:
+                pass
             if data == "":
                 # Empty message = Client disconnected
                 print("Client %s:%i disconnected" % (c.address, c.port))

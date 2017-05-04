@@ -20,20 +20,20 @@ public class WaitForReceive : CustomYieldInstruction
         mStartTime = Time.time;
     }
 
-    private TcpClient mClient;
-    private float mTimeout;
-
-    private float mStartTime;
-
     public override bool keepWaiting
     {
         get
         {
-            if(Time.time - mStartTime >= mTimeout)
+            if (Time.time - mStartTime >= mTimeout)
             {
                 return false;
             }
             return mClient.Available <= 0;
         }
     }
+
+    private TcpClient mClient;
+    private float mTimeout;
+
+    private float mStartTime;
 }
